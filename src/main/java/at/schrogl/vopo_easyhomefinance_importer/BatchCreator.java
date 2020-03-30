@@ -29,7 +29,7 @@ public class BatchCreator {
 			.filter(jobType -> jobType.cmdName.equals(args[0]))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("Unknown command: " + args[0]));
-		return jobClazz.batchClazz.getDeclaredConstructor(String[].class).newInstance(new Object[] {args});
+		return jobClazz.batchClazz.getDeclaredConstructor(String.class, String[].class).newInstance(jobClazz.cmdName, new Object[]{args});
 	}
 
 }
